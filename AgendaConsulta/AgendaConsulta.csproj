@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
     <EmbeddedResource Include="Forms\FrmAgeConsulta.resx">
       <DependentUpon>FrmAgeConsulta.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +107,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AgendaConsulta.Entidades\AgendaConsulta.Entidades.csproj">
+      <Project>{2c823a1f-76a0-4c8d-9637-c89f951b2626}</Project>
+      <Name>AgendaConsulta.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgendaConsulta.Negocios\AgendaConsulta.Negocios.csproj">
+      <Project>{3dece7cb-ea0d-4119-a903-d4b9871f721b}</Project>
+      <Name>AgendaConsulta.Negocios</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

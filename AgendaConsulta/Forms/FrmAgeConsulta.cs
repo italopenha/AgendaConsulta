@@ -16,5 +16,12 @@ namespace AgendaConsulta.Forms
         {
             InitializeComponent();
         }
+
+        private void dtpDataHora_ValueChanged(object sender, EventArgs e)
+        {
+            var dt = dtpDataHora.Value;
+            // Arredonda para o horário exato da hora (sem minutos e segundos)
+            dtpDataHora.Value = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, 0, 0);
+        }
     }
 }

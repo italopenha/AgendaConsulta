@@ -41,7 +41,6 @@ namespace AgendaConsulta.Forms
         {
             try
             {
-                Cursor = Cursors.WaitCursor;
                 CloseAllToolStripMenuItem_Click(null, null);
 
                 FrmCadPaciente frm = new FrmCadPaciente
@@ -54,17 +53,12 @@ namespace AgendaConsulta.Forms
             {
                 MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                Cursor = Cursors.Default;
-            }
         }
 
         private void btnCadastrarMedico_Click(object sender, EventArgs e)
         {
             try
             {
-                Cursor = Cursors.WaitCursor;
                 CloseAllToolStripMenuItem_Click(null, null);
 
                 FrmCadMedico frm = new FrmCadMedico
@@ -77,17 +71,12 @@ namespace AgendaConsulta.Forms
             {
                 MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                Cursor = Cursors.Default;
-            }
         }
 
         private void btnAgendarConsulta_Click(object sender, EventArgs e)
         {
             try
             {
-                Cursor = Cursors.WaitCursor;
                 CloseAllToolStripMenuItem_Click(null, null);
 
                 FrmAgeConsulta frm = new FrmAgeConsulta
@@ -99,10 +88,6 @@ namespace AgendaConsulta.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                Cursor = Cursors.Default;
             }
         }
     }

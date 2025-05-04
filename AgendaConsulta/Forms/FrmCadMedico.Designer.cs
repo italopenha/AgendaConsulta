@@ -28,13 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadMedico));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvDados = new System.Windows.Forms.DataGridView();
             this.checkBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnCadastrar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAlterar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnListarTodos = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnLimpar = new System.Windows.Forms.ToolStripButton();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtEspecialidade = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -43,6 +60,14 @@
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.txtEspecialidade);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.txtNome);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.toolStrip1);
             // 
             // splitContainer1.Panel2
             // 
@@ -73,6 +98,116 @@
             this.checkBoxColumn.HeaderText = "";
             this.checkBoxColumn.Name = "checkBoxColumn";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnCadastrar,
+            this.toolStripSeparator1,
+            this.btnAlterar,
+            this.toolStripSeparator2,
+            this.btnListarTodos,
+            this.toolStripSeparator3,
+            this.btnExcluir,
+            this.toolStripSeparator4,
+            this.btnLimpar});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1302, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnCadastrar
+            // 
+            this.btnCadastrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrar.Image")));
+            this.btnCadastrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(77, 22);
+            this.btnCadastrar.Text = "Cadastrar";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
+            this.btnAlterar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(62, 22);
+            this.btnAlterar.Text = "Alterar";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnListarTodos
+            // 
+            this.btnListarTodos.Image = ((System.Drawing.Image)(resources.GetObject("btnListarTodos.Image")));
+            this.btnListarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnListarTodos.Name = "btnListarTodos";
+            this.btnListarTodos.Size = new System.Drawing.Size(90, 22);
+            this.btnListarTodos.Text = "Listar Todos";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluir.Image")));
+            this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(61, 22);
+            this.btnExcluir.Text = "Excluir";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
+            this.btnLimpar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(100, 22);
+            this.btnLimpar.Text = "Limpar Dados";
+            // 
+            // txtNome
+            // 
+            this.txtNome.Location = new System.Drawing.Point(15, 54);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(263, 20);
+            this.txtNome.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Nome do Médico:";
+            // 
+            // txtEspecialidade
+            // 
+            this.txtEspecialidade.Location = new System.Drawing.Point(15, 104);
+            this.txtEspecialidade.Name = "txtEspecialidade";
+            this.txtEspecialidade.Size = new System.Drawing.Size(263, 20);
+            this.txtEspecialidade.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Especialidade:";
+            // 
             // FrmCadMedico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -82,10 +217,14 @@
             this.Name = "FrmCadMedico";
             this.Text = "Cadastro de Médicos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -95,5 +234,19 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         public System.Windows.Forms.DataGridView dgvDados;
         private System.Windows.Forms.DataGridViewCheckBoxColumn checkBoxColumn;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnCadastrar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnAlterar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnListarTodos;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnExcluir;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton btnLimpar;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtEspecialidade;
+        private System.Windows.Forms.Label label2;
     }
 }
