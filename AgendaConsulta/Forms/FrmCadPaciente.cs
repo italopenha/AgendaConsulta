@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgendaConsulta.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,8 +15,8 @@ namespace AgendaConsulta.Forms
     {
         private Entidades.Paciente paciente = new Entidades.Paciente();
         private Entidades.Paciente pacienteAnt = new Entidades.Paciente();
-        private Util util = new Util();
-        private Negocios.CrudNegocios crudNeg = new Negocios.CrudNegocios();
+        private readonly Util util = new Util();
+        private readonly Negocios.CrudNegocios crudNeg = new Negocios.CrudNegocios();
 
         public FrmCadPaciente()
         {
@@ -40,6 +41,7 @@ namespace AgendaConsulta.Forms
             {
                 txtNome.Clear();
                 dtpDtNascimento.Value = DateTime.Now;
+                DesbloquearBotoes();
             }
             catch (Exception ex)
             {
@@ -47,7 +49,7 @@ namespace AgendaConsulta.Forms
             }
         }
 
-        public void MontarEntidadeAnterior()
+        private void MontarEntidadeAnterior()
         {
             try
             {
@@ -57,6 +59,9 @@ namespace AgendaConsulta.Forms
                     pacienteAnt.ID_PACIENTE = Convert.ToInt32(dgvDados.CurrentRow.Cells["ID_PACIENTE"].Value.ToString());
                     pacienteAnt.NOME = dgvDados.CurrentRow.Cells["NOME"].Value.ToString();
                     pacienteAnt.DT_NASCIMENTO = Convert.ToDateTime(dgvDados.CurrentRow.Cells["DT_NASCIMENTO"].Value.ToString());
+
+                    txtNome.Text = pacienteAnt.NOME;
+                    dtpDtNascimento.Value = pacienteAnt.DT_NASCIMENTO;
                 }
             }
             catch (Exception ex)
@@ -90,12 +95,16 @@ namespace AgendaConsulta.Forms
                 if (pacienteAnt.ID_PACIENTE != 0)
                     paciente.ID_PACIENTE = pacienteAnt.ID_PACIENTE;
 
-                if (util.VerificaTamanhoTexto(txtNome.Text, "Nome do Paciente") == false)
-                    return false;
-                else 
+                if (util.CampoTextoValido(txtNome.Text, "Nome do Paciente"))
                     paciente.NOME = txtNome.Text;
+                else
+                    return false;
 
-                paciente.DT_NASCIMENTO = Convert.ToDateTime(dtpDtNascimento.Text);
+                if (util.CampoDataValido(dtpDtNascimento.Value, "Data de Nascimento"))
+                    paciente.DT_NASCIMENTO = Convert.ToDateTime(dtpDtNascimento.Text);
+                else
+                    return false;
+
                 return true;
             }
             catch (Exception ex)
@@ -104,7 +113,7 @@ namespace AgendaConsulta.Forms
             }
         }
 
-        public bool CadastrarPaciente()
+        private bool CadastrarPaciente()
         {
             try
             {
@@ -123,6 +132,85 @@ namespace AgendaConsulta.Forms
             catch (Exception ex)
             {
                 throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        private bool AtualizarPaciente()
+        {
+            try
+            {
+                if (MontarEntidade())
+                {
+                    crudNeg.AtualizarPaciente(paciente);
+                    MessageBox.Show("Paciente atualizado com sucesso!", " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimparDados();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        private bool ConsultarPacientesPorNome()
+        {
+            try
+            {
+                string nome = txtNome.Text.Trim();
+
+                if (util.CampoTextoValido(nome, "Nome do Paciente"))
+                {
+                    dgvDados.DataSource = crudNeg.ConsultarPacientesPorNome(nome);
+
+                    if (dgvDados.Rows.Count == 0)
+                    {
+                        MessageBox.Show($"Não existe nenhum paciente com o nome \"{nome}\".", " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    LimparDados();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        private void BloquearBotoes()
+        {
+            try
+            {
+                btnCadastrar.Enabled = false;
+                btnConsultarPorNome.Enabled = false;
+                btnExcluir.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DesbloquearBotoes()
+        {
+            try
+            {
+                btnCadastrar.Enabled = true;
+                btnConsultarPorNome.Enabled = true;
+                btnExcluir.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -185,6 +273,120 @@ namespace AgendaConsulta.Forms
             try
             {
                 ListarPacientes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvDados_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                MontarEntidadeAnterior();
+                BloquearBotoes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (AtualizarPaciente())
+                {
+                    ListarPacientes();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                LimparDados();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnConsultarPorNome_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                ConsultarPacientesPorNome();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnListarTodos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                ListarPacientes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void dgvDados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                bool cell_checked = false;
+                if (e.RowIndex >= 0)
+                {
+                    cell_checked = Convert.ToBoolean(dgvDados.CurrentRow.Cells["checkBoxColumn"].Value);
+
+                    if (cell_checked == true)
+                    {
+                        dgvDados.CurrentRow.Cells["checkBoxColumn"].Value = false;
+                    }
+                    else if (cell_checked == false)
+                    {
+                        dgvDados.CurrentRow.Cells["checkBoxColumn"].Value = true;
+                    }
+                }
             }
             catch (Exception ex)
             {

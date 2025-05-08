@@ -37,10 +37,12 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnCadastrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnAlterar = new System.Windows.Forms.ToolStripButton();
+            this.btnAtualizar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnListarTodos = new System.Windows.Forms.ToolStripButton();
+            this.btnConsultarPorNome = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnListarTodos = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnLimpar = new System.Windows.Forms.ToolStripButton();
@@ -115,10 +117,12 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnCadastrar,
             this.toolStripSeparator1,
-            this.btnAlterar,
+            this.btnAtualizar,
             this.toolStripSeparator2,
-            this.btnListarTodos,
+            this.btnConsultarPorNome,
             this.toolStripSeparator3,
+            this.btnListarTodos,
+            this.toolStripSeparator5,
             this.btnExcluir,
             this.toolStripSeparator4,
             this.btnLimpar});
@@ -142,18 +146,33 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // btnAlterar
+            // btnAtualizar
             // 
-            this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
-            this.btnAlterar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(62, 22);
-            this.btnAlterar.Text = "Alterar";
+            this.btnAtualizar.Image = ((System.Drawing.Image)(resources.GetObject("btnAtualizar.Image")));
+            this.btnAtualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(73, 22);
+            this.btnAtualizar.Text = "Atualizar";
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnConsultarPorNome
+            // 
+            this.btnConsultarPorNome.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultarPorNome.Image")));
+            this.btnConsultarPorNome.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnConsultarPorNome.Name = "btnConsultarPorNome";
+            this.btnConsultarPorNome.Size = new System.Drawing.Size(135, 22);
+            this.btnConsultarPorNome.Text = "Consultar Por Nome";
+            this.btnConsultarPorNome.Click += new System.EventHandler(this.btnConsultarPorNome_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // btnListarTodos
             // 
@@ -162,11 +181,12 @@
             this.btnListarTodos.Name = "btnListarTodos";
             this.btnListarTodos.Size = new System.Drawing.Size(90, 22);
             this.btnListarTodos.Text = "Listar Todos";
+            this.btnListarTodos.Click += new System.EventHandler(this.btnListarTodos_Click);
             // 
-            // toolStripSeparator3
+            // toolStripSeparator5
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // btnExcluir
             // 
@@ -188,6 +208,7 @@
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(100, 22);
             this.btnLimpar.Text = "Limpar Dados";
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // dgvDados
             // 
@@ -205,7 +226,9 @@
             this.dgvDados.ShowCellToolTips = false;
             this.dgvDados.Size = new System.Drawing.Size(1640, 455);
             this.dgvDados.TabIndex = 1;
+            this.dgvDados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDados_CellClick);
             this.dgvDados.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDados_DataBindingComplete);
+            this.dgvDados.DoubleClick += new System.EventHandler(this.dgvDados_DoubleClick);
             // 
             // checkBoxColumn
             // 
@@ -238,7 +261,6 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         public System.Windows.Forms.DataGridView dgvDados;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn checkBoxColumn;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStrip toolStrip1;
@@ -246,12 +268,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpDtNascimento;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnAlterar;
+        private System.Windows.Forms.ToolStripButton btnAtualizar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton btnListarTodos;
+        private System.Windows.Forms.ToolStripButton btnConsultarPorNome;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton btnLimpar;
+        private System.Windows.Forms.ToolStripButton btnListarTodos;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn checkBoxColumn;
     }
 }

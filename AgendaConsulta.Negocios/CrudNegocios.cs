@@ -74,6 +74,18 @@ namespace AgendaConsulta.Negocios
             }
         }
 
+        public List<Paciente> ConsultarPacientesPorNome(string nome)
+        {
+            try
+            {
+                return objDados.ConsultarPacientesPorNome(nome);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
         #endregion
 
         #region Medico

@@ -115,6 +115,25 @@ namespace AgendaConsulta.Dados
             }
         }
 
+        public List<Paciente> ConsultarPacientesPorNome(string nome)
+        {
+            try
+            {
+                using (Conexao db = new Conexao())
+                {
+                    var pacientes = (from TB_PACIENTE in db.GetTable<Paciente>()
+                                     where TB_PACIENTE.NOME.Contains(nome)
+                                     select TB_PACIENTE).ToList();
+
+                    return pacientes;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
         #endregion
 
         #region Medico
