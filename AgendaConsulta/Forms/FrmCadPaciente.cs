@@ -96,12 +96,12 @@ namespace AgendaConsulta.Forms
                 if (pacienteAnt.ID_PACIENTE != 0)
                     paciente.ID_PACIENTE = pacienteAnt.ID_PACIENTE;
 
-                if (util.CampoTextoValido(txtNome.Text, "Nome do Paciente"))
+                if (util.ValidarCampoTexto(txtNome.Text, "Nome do Paciente"))
                     paciente.NOME = txtNome.Text;
                 else
                     return false;
 
-                if (util.CampoDataValido(dtpDtNascimento.Value, "Data de Nascimento"))
+                if (util.ValidarCampoData(dtpDtNascimento.Value, "Data de Nascimento"))
                     paciente.DT_NASCIMENTO = Convert.ToDateTime(dtpDtNascimento.Text);
                 else
                     return false;
@@ -164,7 +164,7 @@ namespace AgendaConsulta.Forms
             {
                 string nome = txtNome.Text.Trim();
 
-                if (util.CampoTextoValido(nome, "Nome do Paciente"))
+                if (util.ValidarCampoTexto(nome, "Nome do Paciente"))
                 {
                     dgvDados.DataSource = crudNeg.ConsultarPacientesPorNome(nome);
 

@@ -9,7 +9,7 @@ namespace AgendaConsulta
 {
     public class Util
     {
-        public bool CampoTextoValido(string texto, string nomeCampo)
+        public bool ValidarCampoTexto(string texto, string nomeCampo)
         {
             if (string.IsNullOrWhiteSpace(texto))
             {
@@ -29,7 +29,7 @@ namespace AgendaConsulta
             return true;
         }
 
-        public bool CampoDataValido(DateTime data, string nomeCampo)
+        public bool ValidarCampoData(DateTime data, string nomeCampo)
         {
             if (data > DateTime.Now)
             {
