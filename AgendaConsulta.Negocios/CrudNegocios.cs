@@ -150,6 +150,30 @@ namespace AgendaConsulta.Negocios
             }
         }
 
+        public List<Medico> ConsultarMedicosPorNome(string nome)
+        {
+            try
+            {
+                return objDados.ConsultarMedicosPorNome(nome);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        public List<Medico> ConsultarMedicosPorEspecialidade(string especialidade)
+        {
+            try
+            {
+                return objDados.ConsultarMedicosPorEspecialidade(especialidade);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
         #endregion
 
         #region Consulta

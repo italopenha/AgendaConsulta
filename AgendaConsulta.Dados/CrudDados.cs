@@ -242,6 +242,44 @@ namespace AgendaConsulta.Dados
             }
         }
 
+        public List<Medico> ConsultarMedicosPorNome(string nome)
+        {
+            try
+            {
+                using (Conexao db = new Conexao())
+                {
+                    var medicos = (from TB_MEDICO in db.GetTable<Medico>()
+                                     where TB_MEDICO.NOME.Contains(nome)
+                                     select TB_MEDICO).ToList();
+
+                    return medicos;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        public List<Medico> ConsultarMedicosPorEspecialidade(string especialidade)
+        {
+            try
+            {
+                using (Conexao db = new Conexao())
+                {
+                    var medicos = (from TB_MEDICO in db.GetTable<Medico>()
+                                   where TB_MEDICO.ESPECIALIDADE.Contains(especialidade)
+                                   select TB_MEDICO).ToList();
+
+                    return medicos;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
         #endregion
 
         #region Consulta
