@@ -15,6 +15,7 @@ namespace AgendaConsulta.Forms
     {
         private Entidades.Paciente paciente = new Entidades.Paciente();
         private Entidades.Paciente pacienteAnt = new Entidades.Paciente();
+        private List<Entidades.Paciente> ListaPacientes = new List<Entidades.Paciente>();
         private readonly Util util = new Util();
         private readonly Negocios.CrudNegocios crudNeg = new Negocios.CrudNegocios();
 
@@ -214,6 +215,51 @@ namespace AgendaConsulta.Forms
             }
         }
 
+        private bool ExcluirPacientes()
+        {
+            try
+            {
+                if (MessageBox.Show("Deseja realmente excluir este(s) pacientes?", " Sistema Agenda Consulta ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ListaPacientes = new List<Entidades.Paciente>();
+
+                    foreach (DataGridViewRow row in dgvDados.Rows)
+                    {
+                        if (Convert.ToBoolean(row.Cells["checkBoxColumn"].Value) == true)
+                        {
+                            ListaPacientes.Add(new Entidades.Paciente
+                            {
+                                ID_PACIENTE = Convert.ToInt32(row.Cells["ID_PACIENTE"].Value.ToString()),
+                                NOME = row.Cells["NOME"].Value.ToString(),
+                                DT_NASCIMENTO = Convert.ToDateTime(row.Cells["DT_NASCIMENTO"].Value.ToString())
+                            });
+                        }
+                    }
+
+                    if (ListaPacientes.Count > 0)
+                    {
+                        crudNeg.ExcluirPacientesEmLote(ListaPacientes);
+                        MessageBox.Show("Paciente(s) excluído(s) com sucesso!", " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimparDados();
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nenhum paciente selecionado para exclusão.", " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
         private void dgvDados_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -391,6 +437,26 @@ namespace AgendaConsulta.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                if (ExcluirPacientes())
+                {
+                    ListarPacientes();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
             }
         }
     }
