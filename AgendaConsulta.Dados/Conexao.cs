@@ -9,7 +9,16 @@ namespace AgendaConsulta.Dados
 {
     public class Conexao : DataContext
     {
-        public static string connectionString = "Server=localhost;Database=BD_AGENDA_CONSULTA;Trusted_Connection=True;";
+        private static readonly string connectionString;
+
+        static Conexao()
+        {
+#if DEBUG
+            connectionString = "Server=localhost;Database=TESTE;Trusted_Connection=True;";  
+#else
+            connectionString = "Server=localhost;Database=BD_AGENDA_CONSULTA;Trusted_Connection=True;";  
+#endif
+        }
 
         public Conexao() : base(connectionString) { }
     }
