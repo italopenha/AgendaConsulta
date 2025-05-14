@@ -101,7 +101,7 @@ namespace AgendaConsulta.Forms
                 else
                     return false;
 
-                if (util.ValidarCampoData(dtpDtNascimento.Value, "Data de Nascimento"))
+                if (util.ValidarCampoDataNascimento(dtpDtNascimento.Value, "Data de Nascimento"))
                     paciente.DT_NASCIMENTO = Convert.ToDateTime(dtpDtNascimento.Text);
                 else
                     return false;

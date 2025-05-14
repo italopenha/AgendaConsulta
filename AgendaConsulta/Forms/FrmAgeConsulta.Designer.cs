@@ -30,8 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgeConsulta));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dgvDados = new System.Windows.Forms.DataGridView();
-            this.checkBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dtpDataHora = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbxMedico = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbxPaciente = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAgendar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -42,18 +46,14 @@
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnLimpar = new System.Windows.Forms.ToolStripButton();
-            this.cbxPaciente = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbxMedico = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtpDataHora = new System.Windows.Forms.DateTimePicker();
+            this.dgvDados = new System.Windows.Forms.DataGridView();
+            this.checkBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -80,27 +80,59 @@
             this.splitContainer1.SplitterDistance = 376;
             this.splitContainer1.TabIndex = 2;
             // 
-            // dgvDados
+            // dtpDataHora
             // 
-            this.dgvDados.AllowUserToAddRows = false;
-            this.dgvDados.AllowUserToDeleteRows = false;
-            this.dgvDados.AllowUserToResizeRows = false;
-            this.dgvDados.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgvDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.checkBoxColumn});
-            this.dgvDados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDados.Location = new System.Drawing.Point(0, 0);
-            this.dgvDados.Name = "dgvDados";
-            this.dgvDados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDados.ShowCellToolTips = false;
-            this.dgvDados.Size = new System.Drawing.Size(1300, 417);
-            this.dgvDados.TabIndex = 1;
+            this.dtpDataHora.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpDataHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDataHora.Location = new System.Drawing.Point(12, 177);
+            this.dtpDataHora.Name = "dtpDataHora";
+            this.dtpDataHora.ShowUpDown = true;
+            this.dtpDataHora.Size = new System.Drawing.Size(206, 20);
+            this.dtpDataHora.TabIndex = 8;
+            this.dtpDataHora.ValueChanged += new System.EventHandler(this.dtpDataHora_ValueChanged);
             // 
-            // checkBoxColumn
+            // label3
             // 
-            this.checkBoxColumn.HeaderText = "";
-            this.checkBoxColumn.Name = "checkBoxColumn";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 161);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Data e Hora:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 104);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Médico:";
+            // 
+            // cbxMedico
+            // 
+            this.cbxMedico.FormattingEnabled = true;
+            this.cbxMedico.Location = new System.Drawing.Point(12, 120);
+            this.cbxMedico.Name = "cbxMedico";
+            this.cbxMedico.Size = new System.Drawing.Size(206, 21);
+            this.cbxMedico.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Paciente:";
+            // 
+            // cbxPaciente
+            // 
+            this.cbxPaciente.FormattingEnabled = true;
+            this.cbxPaciente.Location = new System.Drawing.Point(12, 60);
+            this.cbxPaciente.Name = "cbxPaciente";
+            this.cbxPaciente.Size = new System.Drawing.Size(206, 21);
+            this.cbxPaciente.TabIndex = 3;
             // 
             // toolStrip1
             // 
@@ -127,6 +159,7 @@
             this.btnAgendar.Name = "btnAgendar";
             this.btnAgendar.Size = new System.Drawing.Size(72, 22);
             this.btnAgendar.Text = "Agendar";
+            this.btnAgendar.Click += new System.EventHandler(this.btnAgendar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -179,60 +212,30 @@
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(100, 22);
             this.btnLimpar.Text = "Limpar Dados";
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
-            // cbxPaciente
+            // dgvDados
             // 
-            this.cbxPaciente.FormattingEnabled = true;
-            this.cbxPaciente.Location = new System.Drawing.Point(12, 60);
-            this.cbxPaciente.Name = "cbxPaciente";
-            this.cbxPaciente.Size = new System.Drawing.Size(206, 21);
-            this.cbxPaciente.TabIndex = 3;
+            this.dgvDados.AllowUserToAddRows = false;
+            this.dgvDados.AllowUserToDeleteRows = false;
+            this.dgvDados.AllowUserToResizeRows = false;
+            this.dgvDados.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
+            this.dgvDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.checkBoxColumn});
+            this.dgvDados.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDados.Location = new System.Drawing.Point(0, 0);
+            this.dgvDados.Name = "dgvDados";
+            this.dgvDados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDados.ShowCellToolTips = false;
+            this.dgvDados.Size = new System.Drawing.Size(1300, 417);
+            this.dgvDados.TabIndex = 1;
+            this.dgvDados.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDados_DataBindingComplete);
             // 
-            // label1
+            // checkBoxColumn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Paciente:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 104);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Médico:";
-            // 
-            // cbxMedico
-            // 
-            this.cbxMedico.FormattingEnabled = true;
-            this.cbxMedico.Location = new System.Drawing.Point(12, 120);
-            this.cbxMedico.Name = "cbxMedico";
-            this.cbxMedico.Size = new System.Drawing.Size(206, 21);
-            this.cbxMedico.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 161);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Data e Hora:";
-            // 
-            // dtpDataHora
-            // 
-            this.dtpDataHora.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dtpDataHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDataHora.Location = new System.Drawing.Point(12, 177);
-            this.dtpDataHora.Name = "dtpDataHora";
-            this.dtpDataHora.ShowUpDown = true;
-            this.dtpDataHora.Size = new System.Drawing.Size(206, 20);
-            this.dtpDataHora.TabIndex = 8;
-            this.dtpDataHora.ValueChanged += new System.EventHandler(this.dtpDataHora_ValueChanged);
+            this.checkBoxColumn.HeaderText = "";
+            this.checkBoxColumn.Name = "checkBoxColumn";
             // 
             // FrmAgeConsulta
             // 
@@ -243,14 +246,15 @@
             this.Name = "FrmAgeConsulta";
             this.Text = "Agendamento de Consultas";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmAgeConsulta_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).EndInit();
             this.ResumeLayout(false);
 
         }
