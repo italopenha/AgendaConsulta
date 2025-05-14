@@ -29,11 +29,21 @@ namespace AgendaConsulta
             return true;
         }
 
-        public bool ValidarCampoData(DateTime data, string nomeCampo)
+        public bool ValidarCampoDataNascimento(DateTime data, string nomeCampo)
         {
             if (data > DateTime.Now)
             {
                 MessageBox.Show($"\"{nomeCampo}\" não pode ser uma data futura.", " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        public bool ValidarCampoDataConsulta(DateTime data, string nomeCampo)
+        {
+            if (data <= DateTime.Now)
+            {
+                MessageBox.Show($"\"{nomeCampo}\" não pode ser uma data que já passou.", " Sistema Agenda Consulta ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
