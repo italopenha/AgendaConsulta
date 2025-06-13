@@ -59,21 +59,21 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(70, 22);
-            this.toolStripDropDownButton1.Text = "Cadastrar";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(67, 22);
+            this.toolStripDropDownButton1.Text = "Cadastro";
             // 
             // btnCadastrarPaciente
             // 
             this.btnCadastrarPaciente.Name = "btnCadastrarPaciente";
             this.btnCadastrarPaciente.Size = new System.Drawing.Size(180, 22);
-            this.btnCadastrarPaciente.Text = "Paciente";
+            this.btnCadastrarPaciente.Text = "Pacientes";
             this.btnCadastrarPaciente.Click += new System.EventHandler(this.btnCadastrarPaciente_Click);
             // 
             // btnCadastrarMedico
             // 
             this.btnCadastrarMedico.Name = "btnCadastrarMedico";
             this.btnCadastrarMedico.Size = new System.Drawing.Size(180, 22);
-            this.btnCadastrarMedico.Text = "Médico";
+            this.btnCadastrarMedico.Text = "Médicos(as)";
             this.btnCadastrarMedico.Click += new System.EventHandler(this.btnCadastrarMedico_Click);
             // 
             // toolStripSeparator1

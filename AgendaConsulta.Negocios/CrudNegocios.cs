@@ -190,7 +190,7 @@ namespace AgendaConsulta.Negocios
             }
         }
 
-        public List<Consulta> ListarConsultas()
+        public object ListarConsultas()
         {
             try
             {

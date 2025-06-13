@@ -300,13 +300,27 @@ namespace AgendaConsulta.Dados
             }
         }
 
-        public List<Consulta> ListarConsultas()
+        public object ListarConsultas()
         {
             try
             {
                 using (Conexao db = new Conexao())
                 {
-                    return db.GetTable<Consulta>().ToList();
+                    var consultas = (from c in db.GetTable<Consulta>()
+                                     join p in db.GetTable<Paciente>() on c.ID_PACIENTE equals p.ID_PACIENTE
+                                     join m in db.GetTable<Medico>() on c.ID_MEDICO equals m.ID_MEDICO
+                                     select new
+                                     {
+                                         c.ID_CONSULTA,
+                                         c.ID_MEDICO,
+                                         c.ID_PACIENTE,
+                                         c.HORARIO,
+                                         PacienteNome = p.NOME,
+                                         MedicoNome = m.NOME,
+                                         MedicoEspecialidade = m.ESPECIALIDADE
+                                     }).ToList();
+
+                    return consultas;
                 }
             }
             catch (Exception ex)
